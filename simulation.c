@@ -6,26 +6,11 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 14:28:38 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 15:14:41 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-
-// int	take_dongle(t_coder *coder)
-// {
-// 	if (coder->id % 2 == 0)
-// 	{
-// 		take_one(coder, coder->left);
-// 		take_one(coder, coder->right);
-// 	}
-// 	else
-// 	{
-// 		take_one(coder, coder->right);
-// 		take_one(coder, coder->left);
-// 	}
-// 	return (1);
-// }
 
 int	check_burnout(t_coder *coders)
 {
@@ -44,7 +29,7 @@ int	check_burnout(t_coder *coders)
 		{
 			pthread_mutex_lock(&coders[i].config->print_mutex);
 			printf("%ld %d burned out\n", n, coders[i].id);
-			pthread_mutex_lock(&coders[i].config->print_mutex);
+			pthread_mutex_unlock(&coders[i].config->print_mutex);
 			return (1);
 		}
 		i++;
@@ -84,7 +69,12 @@ void	*routine(void *arg)
 		stoped = coder->config->stop;
 		pthread_mutex_unlock(&coder->config->stop_mutex);
 		if (stoped)
-			break ;
+		{
+			return (NULL);
+			printf("Ici!");
+			// break ;
+			// printf("AFTER!");
+		}
 		take_dongle(coder);
 		pthread_mutex_lock(&coder->activity_mutex);
 		coder->last_compile_start = get_timestamp_ms(coder->config->start_time);
