@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 14:31:28 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 15:46:30 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ static void	take_one(t_coder *coder, t_dongle *dongle)
 
 	pthread_mutex_lock(&dongle->lock);
 	while (dongle->available != 1)
+	{
+		if (coder->config->stop)
+			return;
 		pthread_cond_wait(&dongle->cond, &dongle->lock);
+	}
 	dongle->available = 0;
 	pthread_mutex_unlock(&dongle->lock);
+	if (coder->config->stop)
+		return;
 	timestamp = get_timestamp_ms(coder->config->start_time);
 	pthread_mutex_lock(&coder->config->print_mutex);
 	printf("%ld %d has taken a dongle\n", timestamp, coder->id);

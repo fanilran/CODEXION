@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 15:14:41 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 16:19:06 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,27 @@
 int	check_burnout(t_coder *coders)
 {
 	int	i;
+	int	j;
 	long	d;
 	long	n;
 
 	i = 0;
+	j = 0;
 	while (i < coders->config->number_of_coder)
 	{
 		pthread_mutex_lock(&coders[i].activity_mutex);
 		d = coders[i].last_compile_start + coders[i].config->time_to_burnout;
 		pthread_mutex_unlock(&coders[i].activity_mutex);
 		n = get_timestamp_ms(coders[i].config->start_time);
-		if (n > d)
+		if (n > d && coders[i].compile_done < coders[i].config->number_of_compiles_required)
 		{
+			while (j < coders->config->number_of_coder)
+			{
+				pthread_mutex_lock(&coders[j].config->stop_mutex);
+				coders[j].config->stop = 1;
+				pthread_mutex_unlock(&coders[j].config->stop_mutex);
+				j++;
+			}
 			pthread_mutex_lock(&coders[i].config->print_mutex);
 			printf("%ld %d burned out\n", n, coders[i].id);
 			pthread_mutex_unlock(&coders[i].config->print_mutex);
@@ -69,12 +78,7 @@ void	*routine(void *arg)
 		stoped = coder->config->stop;
 		pthread_mutex_unlock(&coder->config->stop_mutex);
 		if (stoped)
-		{
-			return (NULL);
-			printf("Ici!");
-			// break ;
-			// printf("AFTER!");
-		}
+			break ;
 		take_dongle(coder);
 		pthread_mutex_lock(&coder->activity_mutex);
 		coder->last_compile_start = get_timestamp_ms(coder->config->start_time);
@@ -82,7 +86,21 @@ void	*routine(void *arg)
 		compiles(coder);
 		release_dongle(coder, coder->left);
 		release_dongle(coder, coder->right);
+	
+		pthread_mutex_lock(&coder->config->stop_mutex);
+		stoped = coder->config->stop;
+		pthread_mutex_unlock(&coder->config->stop_mutex);
+		if (stoped)
+			break ;
+
 		debuges(coder);
+
+		pthread_mutex_lock(&coder->config->stop_mutex);
+		stoped = coder->config->stop;
+		pthread_mutex_unlock(&coder->config->stop_mutex);
+		if (stoped)
+			break ;
+		
 		refactores(coder);
 		i++;
 		pthread_mutex_lock(&coder->activity_mutex);
@@ -100,12 +118,7 @@ void	*monitor(void *arg)
 	while (1)
 	{
 		if (check_burnout(coder) || check_all_done(coder))
-		{
-			pthread_mutex_lock(&coder->config->stop_mutex);
-			coder->config->stop = 1;
-			pthread_mutex_unlock(&coder->config->stop_mutex);
 			break ;
-		}
 		usleep(1000);
 	}
 	return (NULL);	
