@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 11:48:27 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 11:50:18 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_burnout(t_coder *coders)
 		n = get_timestamp_ms(coders[i].config->start_time);
 		if (n > d)
 		{
-			printf("%ld %d is bunrout\n", n, coders[i].id);
+			printf("%ld %d burned out\n", n, coders[i].id);
 			return (1);
 		}
 		i++;
