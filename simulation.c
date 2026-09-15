@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/11 12:33:18 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 11:48:27 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_burnout(t_coder *coders)
 		d = coders[i].last_compile_start + coders[i].config->time_to_burnout;
 		pthread_mutex_unlock(&coders[i].activity_mutex);
 		n = get_timestamp_ms(coders[i].config->start_time);
-		if (n >= d)
+		if (n > d)
 		{
 			printf("%ld %d is bunrout\n", n, coders[i].id);
 			return (1);
@@ -53,12 +53,18 @@ int	check_burnout(t_coder *coders)
 void	*routine(void *arg)
 {
 	t_coder	*coder;
+	int		stoped;
 	int		i;
 
 	coder = (t_coder *)arg;
 	i = 0;
 	while (i < coder->config->number_of_compiles_required)
 	{
+		pthread_mutex_lock(&coder->config->stop_mutex);
+		stoped = coder->config->stop;
+		pthread_mutex_unlock(&coder->config->stop_mutex);
+		if (stoped)
+			break ;
 		take_dongle(coder);
 		pthread_mutex_lock(&coder->activity_mutex);
 		coder->last_compile_start = get_timestamp_ms(coder->config->start_time);
@@ -84,7 +90,12 @@ void	*monitor(void *arg)
 	while (1)
 	{
 		if (check_burnout(coder))
+		{
+			pthread_mutex_lock(&coder->config->stop_mutex);
+			coder->config->stop = 1;
+			pthread_mutex_unlock(&coder->config->stop_mutex);
 			break ;
+		}
 		usleep(1000);
 	}
 	return (NULL);	

@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 11:59:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/08 13:32:58 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 11:42:36 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_data
 	int				dongle_cooldown;
 	char			*scheduler;
 	long			start_time;
+	int				stop;
+	pthread_mutex_t	stop_mutex;
 	pthread_mutex_t	print_mutex;
 }	t_data;
 
