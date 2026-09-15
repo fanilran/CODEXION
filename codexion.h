@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 21:05:03 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/11 12:32:23 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 14:30:07 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*create_threads(t_data *config, t_coder *coders);
 void	*routine(void *arg);
 void	*monitor(void *arg);
 void	release_dongle(t_coder *coder, t_dongle *dongle);
-void	take_one(t_coder *coder, t_dongle *dongle);
+int     take_dongle(t_coder *coder);
 void	compiles(t_coder *coder);
 void	debuges(t_coder *coder);
 void	refactores(t_coder *coder);

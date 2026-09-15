@@ -44,9 +44,11 @@ static int	init_coders(t_data *config, t_coder **coders, t_dongle **dongles)
 	while (i < config->number_of_coder)
 	{
 		pthread_mutex_init(&(*coders)[i].activity_mutex, NULL);
-		(*coders)[i].last_compile_start = 0;
-		(*coders)[i].id = i + 1;
 		(*coders)[i].config = config;
+		(*coders)[i].id = i + 1;
+		(*coders)[i].compile_done = 0;
+		(*coders)[i].config->stop = 0;
+		(*coders)[i].last_compile_start = 0;
 		(*coders)[i].left = &(*dongles)[i];
 		(*coders)[i].right = &(*dongles)[(i + 1) % config->number_of_coder];
 		i++;

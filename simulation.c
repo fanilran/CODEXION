@@ -6,26 +6,26 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 11:50:18 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/15 14:28:38 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	take_dongle(t_coder *coder)
-{
-	if (coder->id % 2 == 0)
-	{
-		take_one(coder, coder->left);
-		take_one(coder, coder->right);
-	}
-	else
-	{
-		take_one(coder, coder->right);
-		take_one(coder, coder->left);
-	}
-	return (1);
-}
+// int	take_dongle(t_coder *coder)
+// {
+// 	if (coder->id % 2 == 0)
+// 	{
+// 		take_one(coder, coder->left);
+// 		take_one(coder, coder->right);
+// 	}
+// 	else
+// 	{
+// 		take_one(coder, coder->right);
+// 		take_one(coder, coder->left);
+// 	}
+// 	return (1);
+// }
 
 int	check_burnout(t_coder *coders)
 {
@@ -42,12 +42,32 @@ int	check_burnout(t_coder *coders)
 		n = get_timestamp_ms(coders[i].config->start_time);
 		if (n > d)
 		{
+			pthread_mutex_lock(&coders[i].config->print_mutex);
 			printf("%ld %d burned out\n", n, coders[i].id);
+			pthread_mutex_lock(&coders[i].config->print_mutex);
 			return (1);
 		}
 		i++;
 	}
 	return (0);
+}
+
+int	check_all_done(t_coder *coders)
+{
+	int	i;
+	int	done;
+
+	i = 0;
+	while (i < coders->config->number_of_coder)
+	{
+		pthread_mutex_lock(&coders[i].activity_mutex);
+		done = coders[i].compile_done;
+		pthread_mutex_unlock(&coders[i].activity_mutex);
+		if (done < coders->config->number_of_compiles_required)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	*routine(void *arg)
@@ -89,7 +109,7 @@ void	*monitor(void *arg)
 	coder = (t_coder *)arg;
 	while (1)
 	{
-		if (check_burnout(coder))
+		if (check_burnout(coder) || check_all_done(coder))
 		{
 			pthread_mutex_lock(&coder->config->stop_mutex);
 			coder->config->stop = 1;
