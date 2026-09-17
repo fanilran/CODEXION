@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 16:19:06 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/17 14:13:54 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,21 @@
 int	check_burnout(t_coder *coders)
 {
 	int	i;
-	int	j;
 	long	d;
 	long	n;
 
 	i = 0;
-	j = 0;
 	while (i < coders->config->number_of_coder)
 	{
 		pthread_mutex_lock(&coders[i].activity_mutex);
 		d = coders[i].last_compile_start + coders[i].config->time_to_burnout;
 		pthread_mutex_unlock(&coders[i].activity_mutex);
 		n = get_timestamp_ms(coders[i].config->start_time);
-		if (n > d && coders[i].compile_done < coders[i].config->number_of_compiles_required)
+		if (n > d)
 		{
-			while (j < coders->config->number_of_coder)
-			{
-				pthread_mutex_lock(&coders[j].config->stop_mutex);
-				coders[j].config->stop = 1;
-				pthread_mutex_unlock(&coders[j].config->stop_mutex);
-				j++;
-			}
+			pthread_mutex_lock(&coders[i].config->stop_mutex);
+			coders[i].config->stop = 1;
+			pthread_mutex_unlock(&coders[i].config->stop_mutex);
 			pthread_mutex_lock(&coders[i].config->print_mutex);
 			printf("%ld %d burned out\n", n, coders[i].id);
 			pthread_mutex_unlock(&coders[i].config->print_mutex);
