@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/18 16:01:29 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/18 16:20:02 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,17 @@
 
 static void	take_one(t_coder *coder, t_dongle *dongle)
 {
-	int	stopped;
-
 	pthread_mutex_lock(&dongle->lock);
 	while (dongle->available != 1)
 	{
-		if (coder->config->stop)
+		if (is_stopped(coder))
 			return;
 		pthread_cond_wait(&dongle->cond, &dongle->lock);
 	}
 	dongle->available = 0;
 	pthread_mutex_unlock(&dongle->lock);
 
-	pthread_mutex_lock(&coder->config->stop_mutex);
-	stopped = coder->config->stop;
-	pthread_mutex_unlock(&coder->config->stop_mutex);
-	if (stopped)
+	if (is_stopped(coder))
 		return ;
 	log_msg(coder, "has taken a dongle");
 }
