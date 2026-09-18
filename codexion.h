@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 21:05:03 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 14:30:07 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/18 15:58:05 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ void	debuges(t_coder *coder);
 void	refactores(t_coder *coder);
 long	get_timestamp_ms(long start_time);
 long	get_current_ms();
+int     is_stopped(t_coder *coder);
+void	log_msg(t_coder *coder, char *msg);
+void	wait_ms(t_coder *coder, long time);
 
 #endif
