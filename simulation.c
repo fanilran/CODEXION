@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/18 17:09:04 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/18 17:17:07 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	check_burnout(t_coder *coders)
 			pthread_mutex_lock(&coders[i].config->stop_mutex);
 			coders[i].config->stop = 1;
 			pthread_mutex_unlock(&coders[i].config->stop_mutex);
+			pthread_mutex_lock(&test);
 			log_msg(&coders[i], "burned out");
+			pthread_mutex_unlock(&test);
 			return (1);
 		}
 		i++;
