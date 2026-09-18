@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/18 14:45:49 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/18 14:51:47 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 int	check_burnout(t_coder *coders)
 {
 	int	i;
-	long	d;
-	long	n;
+	long	deadline;
+	long	now;
 
 	i = 0;
 	while (i < coders->config->number_of_coder)
 	{
 		pthread_mutex_lock(&coders[i].activity_mutex);
-		d = coders[i].last_compile_start + coders[i].config->time_to_burnout;
+		deadline = coders[i].last_compile_start + coders[i].config->time_to_burnout;
 		pthread_mutex_unlock(&coders[i].activity_mutex);
-		n = get_timestamp_ms(coders[i].config->start_time);
-		if (n > d)
+		now = get_timestamp_ms(coders[i].config->start_time);
+		if (now > deadline)
 		{
 			pthread_mutex_lock(&coders[i].config->stop_mutex);
 			coders[i].config->stop = 1;
 			pthread_mutex_unlock(&coders[i].config->stop_mutex);
 			pthread_mutex_lock(&coders[i].config->print_mutex);
-			printf("%ld %d burned out\n", n, coders[i].id);
+			printf("%ld %d burned out\n", now, coders[i].id);
 			pthread_mutex_unlock(&coders[i].config->print_mutex);
 			return (1);
 		}
