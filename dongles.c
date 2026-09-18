@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/18 16:20:02 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/18 16:45:31 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	take_dongle(t_coder *coder)
 {
 	if (coder->id % 2 == 0)
 	{
+		usleep(1000);
 		take_one(coder, coder->left);
 		take_one(coder, coder->right);
 	}
