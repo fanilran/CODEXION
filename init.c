@@ -48,7 +48,7 @@ static int	init_coders(t_data *config, t_coder **coders, t_dongle **dongles)
 		(*coders)[i].id = i + 1;
 		(*coders)[i].compile_done = 0;
 		(*coders)[i].config->stop = 0;
-		(*coders)[i].last_compile_start = 0;
+		(*coders)[i].last_compile = 0;
 		(*coders)[i].left = &(*dongles)[i];
 		(*coders)[i].right = &(*dongles)[(i + 1) % config->number_of_coder];
 		i++;

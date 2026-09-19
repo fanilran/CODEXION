@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:32:45 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:35:02 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*routine(void *arg)
 
 	coder = (t_coder *)arg;
 	i = 0;
-	while (i < coder->config->number_of_compiles_required)
+	while (i < coder->config->compiles_required)
 	{
 		take_dongle(coder);
 		compiles(coder);

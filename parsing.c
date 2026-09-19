@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:09:29 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:35:02 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	pars(t_data *config, int argc, char *argv[])
 	config->time_to_compile = atoi(argv[3]);
 	config->time_to_debug = atoi(argv[4]);
 	config->time_to_refactor = atoi(argv[5]);
-	config->number_of_compiles_required = atoi(argv[6]);
+	config->compiles_required = atoi(argv[6]);
 	config->dongle_cooldown = atoi(argv[7]);
 	config->scheduler = argv[8];
 	return (1);

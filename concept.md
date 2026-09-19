@@ -7,7 +7,7 @@ time_to_burnout                                                             Dead
 time_to_compile                                                             Duration (ms) of the compiling phase
 time_to_debug                                                               Duration (ms) of the debugging phase
 time_to_refactor                                                                Duration (ms) of the refactoring phase
-number_of_compiles_required                                                             Simulation stops once every coder has compiled at least this many times
+compiles_required                                                             Simulation stops once every coder has compiled at least this many times
 dongle_cooldown                                                             Time (ms) a dongle stays unavailable after being released
 scheduler                                                                   Arbitration policy for contested dongles: fifo or edf
 

@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 11:59:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/17 13:50:47 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:35:48 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_data
 	int				time_to_compile;
 	int				time_to_debug;
 	int				time_to_refactor;
-	int				number_of_compiles_required;
+	int				compiles_required;
 	int				dongle_cooldown;
 	char			*scheduler;
 	long			start_time;
@@ -46,7 +46,7 @@ typedef struct s_coder
 	t_dongle		*right;
 	t_data			*config;
 	int				compile_done;
-	long			last_compile_start;
+	long			last_compile;
 	pthread_mutex_t	activity_mutex;
 }	t_coder;
 
