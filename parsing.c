@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 14:53:05 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:09:29 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,20 @@ static int	check_all_digits(char *argv[])
 	{
 		if (!is_positive(argv[i]))
 		{
-			fprintf(stderr, "ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]);
+			fprintf(
+				stderr,
+				"ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]
+				);
 			return (0);
 		}
 		i++;
 	}
 	if (atoi(argv[1]) == 0)
 	{
-		fprintf(stderr, "ERROR: Number of coder must be a positive integer (not 0)!\n");
+		fprintf(
+			stderr,
+			"ERROR: Number of coder must be a positive integer (not 0)!\n"
+			);
 		return (0);
 	}
 	return (1);
