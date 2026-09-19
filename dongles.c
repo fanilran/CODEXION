@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:16:05 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 13:14:14 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,8 @@
 static void	take_one(t_coder *coder, t_dongle *dongle)
 {
 	pthread_mutex_lock(&dongle->lock);
-	while (dongle->available != 1)
-	{
-		if (is_stopped(coder))
-		{
-			pthread_mutex_unlock(&dongle->lock);
-			return ;
-		}
+	while (!dongle->available && !is_stopped(coder))
 		pthread_cond_wait(&dongle->cond, &dongle->lock);
-	}
 	if (is_stopped(coder))
 	{
 		pthread_mutex_unlock(&dongle->lock);
