@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 21:05:03 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/18 15:58:05 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 11:45:37 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ long	get_current_ms();
 int     is_stopped(t_coder *coder);
 void	log_msg(t_coder *coder, char *msg);
 void	wait_ms(t_coder *coder, long time);
+int     check_burnout(t_coder *coders);
+int     check_all_done(t_coder *coders);
 
 #endif
