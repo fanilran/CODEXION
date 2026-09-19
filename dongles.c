@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 11:19:11 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:16:05 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	take_one(t_coder *coder, t_dongle *dongle)
 	}
 	dongle->available = 0;
 	pthread_mutex_unlock(&dongle->lock);
-
 	log_msg(coder, "has taken a dongle");
 }
 
