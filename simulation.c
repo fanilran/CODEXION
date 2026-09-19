@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:25:37 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:32:45 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	*monitor(void *arg)
 			break ;
 		usleep(1000);
 	}
-	return (NULL);	
+	return (NULL);
 }
