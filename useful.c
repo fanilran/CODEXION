@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 15:55:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:17:55 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:19:47 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_burnout(t_coder *coders)
 		now = get_timestamp_ms(coders[i].config->start_time);
 		if (
 			now > deadline && done < coders->config->number_of_compiles_required
-			)
+		)
 		{
 			pthread_mutex_lock(&coders[i].config->stop_mutex);
 			coders[i].config->stop = 1;

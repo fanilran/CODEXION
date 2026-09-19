@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 11:59:03 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/19 12:25:37 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ void	*routine(void *arg)
 	while (i < coder->config->number_of_compiles_required)
 	{
 		take_dongle(coder);
-		pthread_mutex_lock(&coder->activity_mutex);
-		coder->last_compile_start = get_timestamp_ms(coder->config->start_time);
-		pthread_mutex_unlock(&coder->activity_mutex);
 		compiles(coder);
 		release_dongle(coder, coder->left);
 		release_dongle(coder, coder->right);
