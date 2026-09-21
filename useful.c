@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 15:55:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:35:48 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/21 10:25:02 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	is_stopped(t_coder *coder)
 {
 	int	stopped;
-
 	pthread_mutex_lock(&coder->config->stop_mutex);
 	stopped = coder->config->stop;
 	pthread_mutex_unlock(&coder->config->stop_mutex);
@@ -65,6 +64,8 @@ int	check_burnout(t_coder *coders)
 			pthread_mutex_lock(&coders[i].config->stop_mutex);
 			coders[i].config->stop = 1;
 			pthread_mutex_unlock(&coders[i].config->stop_mutex);
+			pthread_cond_broadcast(&coders->left->cond);
+			pthread_cond_broadcast(&coders->right->cond);
 			log_msg(&coders[i], "burned out");
 			return (1);
 		}
