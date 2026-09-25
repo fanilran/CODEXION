@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 15:01:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/25 11:20:20 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/25 12:16:40 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ void	compiles(t_coder *coder)
 {
 	if (is_stopped(coder))
 		return ;
-	log_msg(coder, "is compiling");
 	pthread_mutex_lock(&coder->activity_mutex);
 	coder->compile_done++;
 	coder->last_compile = get_timestamp_ms(coder->config->start_time);
 	pthread_mutex_unlock(&coder->activity_mutex);
+	log_msg(coder, "is compiling");
 	wait_ms(coder, coder->config->time_to_compile);
+	release_dongle(coder, coder->left);
+	release_dongle(coder, coder->right);
+	wait_ms(coder, coder->config->dongle_cooldown);
 }
 
 void	debuges(t_coder *coder)

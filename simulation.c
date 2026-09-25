@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 13:18:32 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/25 11:54:21 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	*routine(void *arg)
 	{
 		take_dongle(coder);
 		compiles(coder);
-		release_dongle(coder, coder->left);
-		release_dongle(coder, coder->right);
 		debuges(coder);
 		refactores(coder);
 		i++;
