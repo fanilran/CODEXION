@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 15:01:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:35:48 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/25 11:20:20 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	debuges(t_coder *coder)
 	if (is_stopped(coder))
 		return ;
 	log_msg(coder, "is debugging");
-	wait_ms(coder, coder->config->time_to_compile);
+	wait_ms(coder, coder->config->time_to_debug);
 }
 
 void	refactores(t_coder *coder)
@@ -37,5 +37,5 @@ void	refactores(t_coder *coder)
 	if (is_stopped(coder))
 		return ;
 	log_msg(coder, "is refactoring");
-	wait_ms(coder, coder->config->time_to_compile);
+	wait_ms(coder, coder->config->time_to_refactor);
 }
