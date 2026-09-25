@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/19 12:35:02 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/25 12:38:18 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ static int	check_all_digits(char *argv[])
 		}
 		i++;
 	}
-	if (atoi(argv[1]) == 0)
+	if (atoi(argv[1]) == 0 || atoi(argv[6]) == 0)
 	{
 		fprintf(
 			stderr,
-			"ERROR: Number of coder must be a positive integer (not 0)!\n"
+			"ERROR: Number of coder or compiles required "
+			"must be a positive integer (not 0)!\n"
 			);
 		return (0);
 	}

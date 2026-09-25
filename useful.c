@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 15:55:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/21 10:25:02 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/25 12:22:01 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	is_stopped(t_coder *coder)
 {
 	int	stopped;
+
 	pthread_mutex_lock(&coder->config->stop_mutex);
 	stopped = coder->config->stop;
 	pthread_mutex_unlock(&coder->config->stop_mutex);
