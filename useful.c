@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 15:55:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/29 14:23:08 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/29 16:28:00 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,13 @@ void	wait_ms(t_coder *coder, long time)
 int	check_burnout(t_coder *coders)
 {
 	int		i;
-	long	deadline;
 	long	now;
-	int		done;
 
 	i = -1;
 	while (++i < coders->config->number_of_coder)
 	{
-		pthread_mutex_lock(&coders[i].activity_mutex);
-		deadline = coders[i].last_compile + coders[i].config->time_to_burnout;
-		done = coders[i].compile_done;
-		pthread_mutex_unlock(&coders[i].activity_mutex);
 		now = get_timestamp_ms(coders[i].config->start_time);
-		if (now > deadline && done < coders->config->compiles_required)
+		if (now - coders[i].last_compile > coders->config->time_to_burnout)
 		{
 			pthread_mutex_lock(&coders[i].config->stop_mutex);
 			coders[i].config->stop = 1;
