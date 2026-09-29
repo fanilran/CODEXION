@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 11:59:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/29 16:03:01 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/29 16:56:38 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ typedef struct s_data
 	pthread_mutex_t	print_mutex;
 }	t_data;
 
-// typedef struct s_request
-// {
-// 	int		id_coder;
-// 	long	priority;
-// }	t_request;
+typedef struct s_request
+{
+	int				id_coder;
+	long			create_at;
+	long			deadline;
+}	t_request;
 
 typedef struct s_dongle
 {
@@ -42,7 +43,7 @@ typedef struct s_dongle
 	pthread_cond_t	cond;
 	int				available;
 	long			released_at;
-	// t_request		heap[2];
+	t_request		heap[2];
 }	t_dongle;
 
 typedef struct s_coder
@@ -54,6 +55,7 @@ typedef struct s_coder
 	t_data			*config;
 	int				compile_done;
 	long			last_compile;
+	pthread_mutex_t	schedule_mutex;
 	pthread_mutex_t	activity_mutex;
 }	t_coder;
 
