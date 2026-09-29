@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 15:55:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/29 16:28:00 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/29 18:14:36 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	check_burnout(t_coder *coders)
 	int		i;
 	long	now;
 
-	i = -1;
-	while (++i < coders->config->number_of_coder)
+	i = 0;
+	while (i < coders->config->number_of_coder)
 	{
 		now = get_timestamp_ms(coders[i].config->start_time);
 		if (now - coders[i].last_compile > coders->config->time_to_burnout)
@@ -64,6 +64,7 @@ int	check_burnout(t_coder *coders)
 			log_msg(&coders[i], "burned out");
 			return (1);
 		}
+		i++;
 	}
 	return (0);
 }

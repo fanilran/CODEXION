@@ -30,3 +30,6 @@ scheduler                                                                   Arbi
 ...
 
 burnout
+
+
+zsh: segmentation fault (core dumped)  ./codexion 100000 10000 100 1000 100 1 10 edf
