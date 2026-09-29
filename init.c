@@ -59,6 +59,7 @@ static int	init_coders(t_data *config, t_coder **coders, t_dongle **dongles)
 int	init_coder_dongle(t_data *config, t_coder **coders, t_dongle **dongles)
 {
 	pthread_mutex_init(&config->print_mutex, NULL);
+	config->start_time = get_current_ms();
 	if (!init_dongles(config, dongles))
 		return (0);
 	if (!init_coders(config, coders, dongles))

@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 04:30:25 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/15 12:45:41 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/09/29 12:29:45 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (!init_coder_dongle(&config, &coders, &dongles))
 		return (1);
-	config.start_time = get_current_ms();
 	pthread_mutex_init(&coders->config->stop_mutex, NULL);
 	create_threads(&config, coders);
 	i = 0;
