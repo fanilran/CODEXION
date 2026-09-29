@@ -9,7 +9,8 @@ SRC =	main.c \
 		time.c \
 		simulation.c \
 		thread.c \
-		useful.c
+		useful.c \
+		scheduler.c
 OBJ = $(SRC:.c=.o)
 NAME = ./codexion
 
