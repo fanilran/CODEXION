@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/11 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/01 20:34:03 by fanilran         ###   ########.fr       */
+/*   Created: 2026/10/02 02:50:03 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 02:50:05 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

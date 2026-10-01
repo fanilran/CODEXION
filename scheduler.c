@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scheduler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/29 16:46:25 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:11:45 by fanilran         ###   ########.fr       */
+/*   Created: 2026/10/02 02:49:56 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 02:49:58 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

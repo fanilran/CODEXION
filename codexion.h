@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   codexion.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/15 21:05:03 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:12:23 by fanilran         ###   ########.fr       */
+/*   Created: 2026/10/02 02:49:02 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 02:49:04 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

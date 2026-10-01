@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/01 13:17:49 by fanilran         ###   ########.fr       */
+/*   Created: 2026/10/02 02:49:45 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 02:49:48 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

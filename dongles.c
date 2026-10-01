@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dongles.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 00:35:58 by fanilran         ###   ########.fr       */
+/*   Created: 2026/10/02 02:49:13 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 02:49:16 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
