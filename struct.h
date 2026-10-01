@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 11:59:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/01 13:00:30 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/01 13:44:33 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_dongle
 	int				available;
 	long			released_at;
 	t_request		heap[2];
+	int				index;
 }	t_dongle;
 
 typedef struct s_coder

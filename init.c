@@ -25,6 +25,7 @@ static int	init_dongles(t_data *config, t_dongle **dongles)
 		pthread_mutex_init(&(*dongles)[i].lock, NULL);
 		pthread_cond_init(&(*dongles)[i].cond, NULL);
 		(*dongles)[i].available = 1;
+		(*dongles)[i].index = 0;
 		i++;
 	}
 	return (1);
