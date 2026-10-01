@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/01 12:54:18 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/01 12:59:06 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	pars(t_data *config, int argc, char *argv[])
 	{
 		fprintf(
 			stderr, "Error: The 'len' argument is missing, "
-			"or there are too many of the 9 required arguments!\n");
+			"or there are too many of the 9 required arguments!\n"
+			);
 		return (0);
 	}
 	if (!check_all_digits(argv) || !verify_s(argv[8]))

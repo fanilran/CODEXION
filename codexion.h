@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 21:05:03 by fanilran          #+#    #+#             */
-/*   Updated: 2026/09/29 17:58:01 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/01 13:01:25 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	log_msg(t_coder *coder, char *msg);
 void	wait_ms(t_coder *coder, long time);
 int		check_burnout(t_coder *coders);
 int		check_all_done(t_coder *coders);
-int     request(t_coder *coders, t_dongle dongle);
+// int     request(t_coder *coders, t_dongle dongle);
 
 #endif
