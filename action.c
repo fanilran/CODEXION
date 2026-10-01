@@ -16,11 +16,11 @@ void	compiles(t_coder *coder)
 {
 	if (is_stopped(coder))
 		return ;
-	log_msg(coder, "is compiling");
 	pthread_mutex_lock(&coder->activity_mutex);
 	coder->compile_done++;
 	coder->last_compile = get_timestamp_ms(coder->config->start_time);
 	pthread_mutex_unlock(&coder->activity_mutex);
+	log_msg(coder, "is compiling");
 	wait_ms(coder, coder->config->time_to_compile);
 }
 

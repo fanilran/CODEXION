@@ -17,24 +17,13 @@ int	main(int argc, char *argv[])
 	t_data		config;
 	t_coder		*coders;
 	t_dongle	*dongles;
-	int			i;
+	int			ok;
 
-	if (!pars(&config, argc, (char **)argv))
+	if (!pars(&config, argc, argv))
 		return (1);
 	if (!init_coder_dongle(&config, &coders, &dongles))
 		return (1);
-	pthread_mutex_init(&coders->config->stop_mutex, NULL);
-	create_threads(&config, coders);
-	i = 0;
-	while (i < config.number_of_coder)
-	{
-		pthread_mutex_destroy(&dongles[i].lock);
-		pthread_mutex_destroy(&coders[i].activity_mutex);
-		pthread_cond_destroy(&dongles[i].cond);
-		i++;
-	}
-	pthread_mutex_destroy(&config.print_mutex);
-	free(dongles);
-	free(coders);
-	return (0);
+	ok = create_threads(&config, coders);
+	destroy_all(&config, coders, dongles);
+	return (!ok);
 }

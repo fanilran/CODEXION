@@ -16,12 +16,15 @@
 # include <string.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <time.h>
+# include <limits.h>
 # include <sys/time.h>
 # include "struct.h"
 
-int		pars(t_data *config, int agrc, char *argv[]);
+int		pars(t_data *config, int argc, char *argv[]);
 int		init_coder_dongle(t_data *config, t_coder **coders, t_dongle **dongles);
-void	*create_threads(t_data *config, t_coder *coders);
+void	destroy_all(t_data *config, t_coder *coders, t_dongle *dongles);
+int		create_threads(t_data *config, t_coder *coders);
 void	*routine(void *arg);
 void	*monitor(void *arg);
 int		take_dongle(t_coder *coder);
@@ -34,10 +37,11 @@ long	get_current_ms(void);
 int		is_stopped(t_coder *coder);
 void	log_msg(t_coder *coder, char *msg);
 void	wait_ms(t_coder *coder, long time);
+void	stop_all(t_coder *coders, int burned_id);
 int		check_burnout(t_coder *coders);
 int		check_all_done(t_coder *coders);
 void	heap_push(t_dongle *dongle, t_coder *coder);
-void	heap_pop(t_dongle *dongle);
+void	heap_pop(t_dongle *dongle, t_coder *coder);
 int		is_front(t_dongle *dongle, t_coder *coder);
 
 #endif

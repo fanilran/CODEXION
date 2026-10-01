@@ -25,6 +25,8 @@ static int	is_positive(char *str)
 			return (0);
 		i++;
 	}
+	if (i > 10 || atol(str) > INT_MAX)
+		return (0);
 	return (1);
 }
 
@@ -45,10 +47,8 @@ static int	check_all_digits(char *argv[])
 	{
 		if (!is_positive(argv[i]))
 		{
-			fprintf(
-				stderr,
-				"ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]
-				);
+			fprintf(stderr, "ERROR: The argument '%s' is invalid "
+				"(positive integer <= INT_MAX)!\n", argv[i]);
 			return (0);
 		}
 		i++;

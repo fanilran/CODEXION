@@ -21,7 +21,8 @@ void	*routine(void *arg)
 	i = 0;
 	while (i < coder->config->compiles_required)
 	{
-		take_dongle(coder);
+		if (!take_dongle(coder))
+			break ;
 		compiles(coder);
 		release_dongle(coder, coder->left);
 		release_dongle(coder, coder->right);
@@ -34,12 +35,12 @@ void	*routine(void *arg)
 
 void	*monitor(void *arg)
 {
-	t_coder	*coder;
+	t_coder	*coders;
 
-	coder = (t_coder *)arg;
+	coders = (t_coder *)arg;
 	while (1)
 	{
-		if (check_burnout(coder) || check_all_done(coder))
+		if (check_burnout(coders) || check_all_done(coders))
 			break ;
 		usleep(1000);
 	}

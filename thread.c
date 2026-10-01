@@ -12,28 +12,42 @@
 
 #include "codexion.h"
 
-void	*create_threads(t_data *config, t_coder *coders)
+static int	start_threads(t_coder *coders, pthread_t *threads, int *count)
 {
-	int			i;
-	pthread_t	monitor_t;
+	int	i;
 
-	coders->thread = malloc(sizeof(pthread_t) * config->number_of_coder);
-	if (!coders->thread)
-		return (NULL);
 	i = 0;
-	while (i < config->number_of_coder)
+	while (i < coders->config->number_of_coder)
 	{
-		pthread_create(&coders->thread[i], NULL, routine, &coders[i]);
+		if (pthread_create(&threads[i], NULL, routine, &coders[i]) != 0)
+			return (0);
 		i++;
+		*count = i;
 	}
-	pthread_create(&monitor_t, NULL, monitor, coders);
-	i = 0;
-	while (i < config->number_of_coder)
-	{
-		pthread_join(coders->thread[i], NULL);
-		i++;
-	}
-	pthread_join(monitor_t, NULL);
-	free(coders->thread);
-	return (NULL);
+	return (1);
+}
+
+int	create_threads(t_data *config, t_coder *coders)
+{
+	pthread_t	*threads;
+	pthread_t	monitor_t;
+	int			count;
+	int			ok;
+
+	threads = malloc(sizeof(pthread_t) * config->number_of_coder);
+	if (!threads)
+		return (0);
+	count = 0;
+	config->start_time = get_current_ms();
+	ok = start_threads(coders, threads, &count);
+	if (ok)
+		ok = (pthread_create(&monitor_t, NULL, monitor, coders) == 0);
+	if (!ok)
+		stop_all(coders, 0);
+	while (count > 0)
+		pthread_join(threads[--count], NULL);
+	if (ok)
+		pthread_join(monitor_t, NULL);
+	free(threads);
+	return (ok);
 }

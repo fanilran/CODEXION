@@ -50,13 +50,11 @@ typedef struct s_dongle
 typedef struct s_coder
 {
 	int				id;
-	pthread_t		*thread;
 	t_dongle		*left;
 	t_dongle		*right;
 	t_data			*config;
 	int				compile_done;
 	long			last_compile;
-	pthread_mutex_t	schedule_mutex;
 	pthread_mutex_t	activity_mutex;
 }	t_coder;
 

@@ -1,6 +1,6 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -lpthread
+CFLAGS = -Wall -Wextra -Werror -pthread
+LDFLAGS = -pthread
 SRC =	main.c \
 		parsing.c \
 		init.c \
@@ -10,6 +10,7 @@ SRC =	main.c \
 		simulation.c \
 		thread.c \
 		useful.c \
+		monitor.c \
 		scheduler.c
 OBJ = $(SRC:.c=.o)
 NAME = ./codexion
@@ -24,6 +25,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@printf "  $(GREEN)Executable file:$(RESET) %s\n" $@
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
+
+$(OBJ): codexion.h struct.h
 
 %.o: %.c
 	@printf "  $(BLUE)CC$(RESET) %s\n" $<
