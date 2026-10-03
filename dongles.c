@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dongles.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/02 02:49:13 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:49:16 by fanilran         ###   ########.fr       */
+/*   Created: 2026/08/26 11:14:21 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 00:35:58 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 static int	dongle_ready(t_dongle *dongle, t_coder *coder)
 {
 	long	now;
+	long	time_since_release;
 
 	if (dongle->available == 0)
 		return (0);
 	now = get_timestamp_ms(coder->config->start_time);
-	return (now - dongle->released_at >= coder->config->dongle_cooldown);
+	time_since_release = now - dongle->released_at;
+	if (time_since_release < coder->config->dongle_cooldown)
+		return (0);
+	return (1);
 }
 
-static void	wait_turn(t_dongle *dongle, t_coder *coder)
+static void	wait_dongle(t_dongle *dongle, t_coder *coder)
 {
 	struct timeval	tv;
 	struct timespec	ts;
@@ -43,54 +47,44 @@ static void	wait_turn(t_dongle *dongle, t_coder *coder)
 	pthread_cond_timedwait(&dongle->cond, &dongle->lock, &ts);
 }
 
-static int	take_one(t_coder *coder, t_dongle *dongle)
+static void	take_one(t_coder *coder, t_dongle *dongle)
 {
 	pthread_mutex_lock(&dongle->lock);
 	heap_push(dongle, coder);
 	while (!is_stopped(coder))
 	{
 		if (dongle_ready(dongle, coder) && is_front(dongle, coder))
-			break ;
-		wait_turn(dongle, coder);
+		{
+			heap_pop(dongle);
+			dongle->available = 0;
+			pthread_mutex_unlock(&dongle->lock);
+			log_msg(coder, "has taken a dongle");
+			return ;
+		}
+		wait_dongle(dongle, coder);
 	}
-	heap_pop(dongle, coder);
-	if (is_stopped(coder))
-	{
-		pthread_mutex_unlock(&dongle->lock);
-		return (0);
-	}
-	dongle->available = 0;
 	pthread_mutex_unlock(&dongle->lock);
-	log_msg(coder, "has taken a dongle");
-	return (1);
 }
 
-int	take_dongle(t_coder *coder)
+int	take_dongle(t_coder *coders)
 {
-	t_dongle	*first;
-	t_dongle	*second;
-
-	first = coder->right;
-	second = coder->left;
-	if (coder->id % 2 == 0)
+	if (coders->id % 2 == 0)
 	{
-		first = coder->left;
-		second = coder->right;
+		take_one(coders, coders->left);
+		take_one(coders, coders->right);
 	}
-	if (!take_one(coder, first))
-		return (0);
-	if (!take_one(coder, second))
+	else
 	{
-		release_dongle(coder, first);
-		return (0);
+		take_one(coders, coders->right);
+		take_one(coders, coders->left);
 	}
-	return (1);
+	return (!is_stopped(coders));
 }
 
-void	release_dongle(t_coder *coder, t_dongle *dongle)
+void	release_dongle(t_coder *coders, t_dongle *dongle)
 {
 	pthread_mutex_lock(&dongle->lock);
-	dongle->released_at = get_timestamp_ms(coder->config->start_time);
+	dongle->released_at = get_timestamp_ms(coders->config->start_time);
 	dongle->available = 1;
 	pthread_cond_broadcast(&dongle->cond);
 	pthread_mutex_unlock(&dongle->lock);

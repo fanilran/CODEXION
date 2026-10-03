@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   useful.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/02 02:50:38 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:53:25 by fanilran         ###   ########.fr       */
+/*   Created: 2026/09/18 15:55:48 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/01 20:10:54 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	log_msg(t_coder *coder, char *msg)
 	long	timestamp;
 
 	pthread_mutex_lock(&coder->config->print_mutex);
-	if (!is_stopped(coder))
+	if (!is_stopped(coder) || strcmp(msg, "burned out") == 0)
 	{
 		timestamp = get_timestamp_ms(coder->config->start_time);
 		printf("%ld %d %s\n", timestamp, coder->id, msg);
@@ -46,4 +46,51 @@ void	wait_ms(t_coder *coder, long time)
 			return ;
 		usleep(200);
 	}
+}
+
+int	check_burnout(t_coder *coders)
+{
+	int		i;
+	int		done;
+	long	now;
+	long	last;
+
+	i = 0;
+	while (i < coders->config->number_of_coder)
+	{
+		pthread_mutex_lock(&coders[i].activity_mutex);
+		done = coders[i].compile_done;
+		last = coders[i].last_compile;
+		pthread_mutex_unlock(&coders[i].activity_mutex);
+		now = get_timestamp_ms(coders[i].config->start_time);
+		if (done < coders->config->compiles_required
+			&& now - last > coders->config->time_to_burnout)
+		{
+			pthread_mutex_lock(&coders[i].config->stop_mutex);
+			coders[i].config->stop = 1;
+			pthread_mutex_unlock(&coders[i].config->stop_mutex);
+			log_msg(&coders[i], "burned out");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	check_all_done(t_coder *coders)
+{
+	int	i;
+	int	done;
+
+	i = 0;
+	while (i < coders->config->number_of_coder)
+	{
+		pthread_mutex_lock(&coders[i].activity_mutex);
+		done = coders[i].compile_done;
+		pthread_mutex_unlock(&coders[i].activity_mutex);
+		if (done < coders->config->compiles_required)
+			return (0);
+		i++;
+	}
+	return (1);
 }

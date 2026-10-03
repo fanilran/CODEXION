@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/02 02:49:45 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:49:48 by fanilran         ###   ########.fr       */
+/*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/01 13:17:49 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_positive(char *str)
 			return (0);
 		i++;
 	}
-	if (i > 10 || atol(str) > INT_MAX)
+	if (i > 10 || atol(str) > 2147483647)
 		return (0);
 	return (1);
 }
@@ -47,8 +47,10 @@ static int	check_all_digits(char *argv[])
 	{
 		if (!is_positive(argv[i]))
 		{
-			fprintf(stderr, "ERROR: The argument '%s' is invalid "
-				"(positive integer <= INT_MAX)!\n", argv[i]);
+			fprintf(
+				stderr,
+				"ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]
+				);
 			return (0);
 		}
 		i++;

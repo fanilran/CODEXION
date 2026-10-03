@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scheduler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/02 02:49:56 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:49:58 by fanilran         ###   ########.fr       */
+/*   Created: 2026/09/29 16:46:25 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/02 02:11:45 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,13 @@ void	heap_push(t_dongle *dongle, t_coder *coder)
 		heapify(dongle, coder->config->scheduler);
 }
 
-void	heap_pop(t_dongle *dongle, t_coder *coder)
+void	heap_pop(t_dongle *dongle)
 {
 	if (dongle->index <= 0)
 		return ;
-	if (dongle->heap[0].id_coder == coder->id)
-	{
-		if (dongle->index == 2)
-			dongle->heap[0] = dongle->heap[1];
-		dongle->index--;
-	}
-	else if (dongle->index == 2 && dongle->heap[1].id_coder == coder->id)
-		dongle->index--;
+	if (dongle->index == 2)
+		dongle->heap[0] = dongle->heap[1];
+	dongle->index--;
 }
 
 int	is_front(t_dongle *dongle, t_coder *coder)

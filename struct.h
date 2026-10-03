@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/02 02:50:13 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/02 02:50:15 by fanilran         ###   ########.fr       */
+/*   Created: 2026/09/07 11:59:04 by fanilran          #+#    #+#             */
+/*   Updated: 2026/10/01 13:44:33 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ typedef struct s_dongle
 typedef struct s_coder
 {
 	int				id;
+	pthread_t		*thread;
 	t_dongle		*left;
 	t_dongle		*right;
 	t_data			*config;
 	int				compile_done;
 	long			last_compile;
+	pthread_mutex_t	schedule_mutex;
 	pthread_mutex_t	activity_mutex;
 }	t_coder;
 
