@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:37:24 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:37:27 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/13 15:33:47 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ static void	wait_dongle(t_dongle *dongle, t_coder *coder)
 	struct timeval	tv;
 	struct timespec	ts;
 	long			remain;
+	long			now;
+	long			time_since_release;
 
-	remain = coder->config->dongle_cooldown
-		- (get_timestamp_ms(coder->config->start_time) - dongle->released_at);
+	now = get_timestamp_ms(coder->config->start_time);
+	time_since_release = now - dongle->released_at;
+	remain = coder->config->dongle_cooldown - time_since_release;
 	if (dongle->available == 0 || remain <= 0)
 	{
 		pthread_cond_wait(&dongle->cond, &dongle->lock);
