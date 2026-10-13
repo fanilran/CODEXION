@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanilran <fanilran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:32:17 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/01 13:17:49 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/13 12:30:13 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	is_positive(char *str)
 			return (0);
 		i++;
 	}
-	if (i > 10 || atol(str) > 2147483647)
-		return (0);
 	return (1);
 }
 
