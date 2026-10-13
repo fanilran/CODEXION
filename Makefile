@@ -1,23 +1,23 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -lpthread
-SRC =	main.c \
-		parsing.c \
-		init.c \
-		dongles.c \
-		action.c \
-		time.c \
-		simulation.c \
-		thread.c \
-		useful.c \
-		scheduler.c
+SRC =   Coders/main.c \
+        Coders/parsing.c \
+        Coders/init.c \
+        Coders/dongles.c \
+        Coders/action.c \
+        Coders/time.c \
+        Coders/simulation.c \
+        Coders/thread.c \
+        Coders/useful.c \
+        Coders/scheduler.c
 OBJ = $(SRC:.c=.o)
 NAME = ./codexion
 
-GREEN		= \033[1;32m
-BLUE		= \033[1;34m
-RED			= \033[1;31m
-RESET		= \033[1;36m
+GREEN       = \033[1;32m
+BLUE        = \033[1;34m
+RED         = \033[1;31m
+RESET       = \033[1;36m
 
 all: $(NAME)
 
