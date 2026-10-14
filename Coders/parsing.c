@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/14 13:13:21 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/14 15:28:10 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ static int	verify_s(char *str)
 static int	valid_arg(char *argv[])
 {
 	if (
-		atoi(argv[3]) == 0 || atoi(argv[3]) > 5000
-		|| atoi(argv[4]) == 0 || atoi(argv[4]) > 5000
-		|| atoi(argv[5]) == 0 || atoi(argv[5]) > 5000
-		|| atoi(argv[7]) == 0 || atoi(argv[7]) > 5000
+		atoi(argv[2]) == 0 || atoi(argv[2]) > 1000000000
+		|| atoi(argv[3]) == 0 || atoi(argv[3]) > 60000
+		|| atoi(argv[4]) == 0 || atoi(argv[4]) > 60000
+		|| atoi(argv[5]) == 0 || atoi(argv[5]) > 60000
+		|| atoi(argv[7]) == 0 || atoi(argv[7]) > 60000
 	)
 	{
 		fprintf(

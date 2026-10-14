@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:20 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/14 13:23:20 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/14 15:36:40 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	*routine(void *arg)
 		compiles(coder);
 		release_dongle(coder, coder->left);
 		release_dongle(coder, coder->right);
+		i++;
+		if (i == coder->config->compiles_required)
+			break ;
 		debuges(coder);
 		refactores(coder);
-		i++;
 	}
 	return (NULL);
 }
