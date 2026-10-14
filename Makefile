@@ -22,7 +22,7 @@ RESET       = \033[1;36m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "  $(GREEN)Executable file:$(RESET) %s\n" $@ $^
+	@printf "  $(GREEN)Executable file:$(RESET) %s\n" $@
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 %.o: %.c
