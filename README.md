@@ -210,7 +210,7 @@ The coders and monitor never talk directly. They communicate through shared stat
 .
 ├── Makefile
 ├── README.md
-└── coders/
+└── Coders/
     ├── *.c
     └── *.h
 ```
