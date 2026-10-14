@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:39:30 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/14 16:25:30 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int	check_all_done(t_coder *coders)
 			return (0);
 		i++;
 	}
+	coders->config->stop = 1;
 	return (1);
 }
