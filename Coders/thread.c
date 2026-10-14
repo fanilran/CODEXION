@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:35 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:38:37 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/14 12:15:47 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	*create_threads(t_data *config, t_coder *coders)
 	n = 0;
 	while (n < config->number_of_coder)
 	{
-		if (pthread_create(&coders->thread[n], NULL, routine, &coders[n]))
-			break ;
+		pthread_create(&coders->thread[n], NULL, routine, &coders[n]);
 		n++;
 	}
 	pthread_create(&monitor_t, NULL, monitor, coders);

@@ -6,19 +6,17 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:38:05 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/14 13:13:21 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static int	is_positive(char *str)
+static int	ft_is_digit(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (!str || str[i] == '\0')
-		return (0);
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
@@ -36,22 +34,21 @@ static int	verify_s(char *str)
 	return (0);
 }
 
-static int	check_all_digits(char *argv[])
+static int	valid_arg(char *argv[])
 {
-	int	i;
-
-	i = 1;
-	while (i <= 7)
+	if (
+		atoi(argv[3]) == 0 || atoi(argv[3]) > 5000
+		|| atoi(argv[4]) == 0 || atoi(argv[4]) > 5000
+		|| atoi(argv[5]) == 0 || atoi(argv[5]) > 5000
+		|| atoi(argv[7]) == 0 || atoi(argv[7]) > 5000
+	)
 	{
-		if (!is_positive(argv[i]))
-		{
-			fprintf(
-				stderr,
-				"ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]
-				);
-			return (0);
-		}
-		i++;
+		fprintf(
+			stderr,
+			"ERROR: Time to: 'compiling, debuging, refactoring, "
+			"donglecooldown' must be a positive integer (not 0 / not > 5000)"
+			);
+		return (0);
 	}
 	if (atoi(argv[1]) == 0 || atoi(argv[1]) > 300)
 	{
@@ -62,6 +59,28 @@ static int	check_all_digits(char *argv[])
 			);
 		return (0);
 	}
+	return (1);
+}
+
+static int	check_all_digits(char *argv[])
+{
+	int	i;
+
+	i = 1;
+	while (i <= 7)
+	{
+		if (!ft_is_digit(argv[i]))
+		{
+			fprintf(
+				stderr,
+				"ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]
+				);
+			return (0);
+		}
+		i++;
+	}
+	if (!valid_arg(argv))
+		return (0);
 	return (1);
 }
 
