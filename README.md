@@ -95,15 +95,16 @@ Valid events: `has taken a dongle`, `is compiling`, `is debugging`, `is refactor
 
 ## Resources
 
-### References
+### GeeksforGeeks
+- [Thread Management Functions in C :](https://www.geeksforgeeks.org/thread-functions-in-c-c) tableau de pthread_create, pthread_join, pthread_detach, pthread_cancel, avec l’option de compilation -pthread.
+- [Multithreading in C :](https://www.geeksforgeeks.org/?p=129879) introduction aux threads et premier programme avec pthread.
+- [POSIX Threads in OS :](https://geeksforgeeks.org/posix-threads-in-os) présentation générale de l’API pthreads.
 
-- [POSIX Threads Programming (LLNL)](https://hpc-tutorials.llnl.gov/posix/)
-- `man 3 pthread_create`, `pthread_mutex_lock`, `pthread_cond_wait`, `pthread_cond_timedwait`, `gettimeofday`, `usleep`
-- Dijkstra, E. W. — *Hierarchical ordering of sequential processes* (resource ordering for deadlock avoidance)
-- Coffman, E. G. et al. — *System Deadlocks* (1971)
-- Liu, C. L. & Layland, J. W. — *Scheduling Algorithms for Multiprogramming in a Hard-Real-Time Environment* (Earliest Deadline First)
-- [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
-- Binary heap / priority queue — Cormen et al., *Introduction to Algorithms*, chapter 6
+### man7.org, pages de manuel en ligne :
+- https://man7.org/linux/man-pages/man3/pthread_create.3.html
+- https://man7.org/linux/man-pages/man3/pthread_cond_timedwait.3p.html
+- https://man7.org/linux/man-pages/man3/pthread_mutex_lock.3p.html
+- https://man7.org/linux/man-pages/man2/gettimeofday.2.html
 
 ### Use of AI
 
