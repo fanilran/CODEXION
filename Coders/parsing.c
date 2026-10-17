@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/14 15:28:10 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/17 20:07:37 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static int	valid_arg(char *argv[])
 		|| atoi(argv[7]) == 0 || atoi(argv[7]) > 60000
 	)
 	{
-		fprintf(
-			stderr,
+		fprintf(stderr,
 			"ERROR: Time to: 'compiling, debuging, refactoring, "
-			"donglecooldown' must be a positive integer (not 0 / not > 5000)"
+			"donglecooldown' must be a positive integer (not 0 / not > 5000),"
+			"and time to 'burned out' not > 1000000000\n"
 			);
 		return (0);
 	}
