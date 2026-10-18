@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:37:33 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:37:35 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/18 02:59:53 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/time.h>
+#include <limits.h>
 # include "struct.h"
 
 int		pars(t_data *config, int agrc, char *argv[]);

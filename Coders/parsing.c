@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/17 20:07:37 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/18 04:07:42 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 static int	ft_is_digit(char *str)
 {
-	int	i;
+	int			i;
+	long long	nb;
 
 	i = 0;
+	nb = 0;
+	if (strcmp(str, "+0") == 0)
+		return (0);
+	if (str[i] == '+')
+		i++;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		nb = nb * 10 + (str[i] - '0');
+		if (nb > INT_MAX)
 			return (0);
 		i++;
 	}
@@ -28,29 +37,19 @@ static int	ft_is_digit(char *str)
 
 static int	verify_s(char *str)
 {
-	if (strcmp(str, "fifo") == 0 || strcmp(str, "edf") == 0)
-		return (1);
-	fprintf(stderr, "ERROR: For this argument, set it to 'fifo' or 'edf'!\n");
-	return (0);
+	if (strcmp(str, "fifo") != 0 && strcmp(str, "edf") != 0)
+	{
+		fprintf(
+			stderr, "ERROR: For this argument '%s'"
+			", set it to <fifo> or <edf>!\n", str
+			);
+		return (0);
+	}
+	return (1);
 }
 
 static int	valid_arg(char *argv[])
 {
-	if (
-		atoi(argv[2]) == 0 || atoi(argv[2]) > 1000000000
-		|| atoi(argv[3]) == 0 || atoi(argv[3]) > 60000
-		|| atoi(argv[4]) == 0 || atoi(argv[4]) > 60000
-		|| atoi(argv[5]) == 0 || atoi(argv[5]) > 60000
-		|| atoi(argv[7]) == 0 || atoi(argv[7]) > 60000
-	)
-	{
-		fprintf(stderr,
-			"ERROR: Time to: 'compiling, debuging, refactoring, "
-			"donglecooldown' must be a positive integer (not 0 / not > 5000),"
-			"and time to 'burned out' not > 1000000000\n"
-			);
-		return (0);
-	}
 	if (atoi(argv[1]) == 0 || atoi(argv[1]) > 300)
 	{
 		fprintf(
@@ -74,7 +73,8 @@ static int	check_all_digits(char *argv[])
 		{
 			fprintf(
 				stderr,
-				"ERROR: The argument '%s' is invalid (not negativ)!\n", argv[i]
+				"ERROR: The argument '%s' is invalid "
+				"(negative, not an integer, or exceeds INT_MAX)!\n", argv[i]
 				);
 			return (0);
 		}
@@ -90,8 +90,12 @@ int	pars(t_data *config, int argc, char *argv[])
 	if (argc != 9)
 	{
 		fprintf(
-			stderr, "Error: The 'len' argument is missing, "
-			"or there are too many of the 9 required arguments!\n"
+			stderr,
+			"Error: expected 8 arguments.\n"
+			"Usage: ./codexion number_of_coders time_to_burnout "
+			"time_to_compile time_to_debug time_to_refactor "
+			"compiles_required dongle_cooldown scheduler\n"
+			"Example: ./codexion 5 800 200 200 200 3 50 fifo\n"
 			);
 		return (0);
 	}
