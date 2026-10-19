@@ -6,11 +6,12 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:37:56 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:37:57 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:25:25 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <stdlib.h>
 
 int	main(int argc, char *argv[])
 {

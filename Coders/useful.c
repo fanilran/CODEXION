@@ -6,11 +6,14 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/14 16:25:30 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:25:51 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
 int	is_stopped(t_coder *coder)
 {

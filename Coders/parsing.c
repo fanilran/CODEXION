@@ -6,11 +6,15 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/18 04:07:42 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:25:32 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 static int	ft_is_digit(char *str)
 {
@@ -19,8 +23,6 @@ static int	ft_is_digit(char *str)
 
 	i = 0;
 	nb = 0;
-	if (strcmp(str, "+0") == 0)
-		return (0);
 	if (str[i] == '+')
 		i++;
 	while (str[i])

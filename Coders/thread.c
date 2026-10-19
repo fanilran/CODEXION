@@ -6,11 +6,12 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:35 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/14 12:15:47 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:25:43 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <stdlib.h>
 
 void	*create_threads(t_data *config, t_coder *coders)
 {

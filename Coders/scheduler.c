@@ -6,11 +6,12 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:10 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 14:38:12 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:25:37 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <string.h>
 
 static void	swap_request(t_request *a, t_request *b)
 {

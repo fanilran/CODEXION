@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <stdlib.h>
 
 static int	init_dongles(t_data *config, t_dongle **dongles)
 {

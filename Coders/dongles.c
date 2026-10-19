@@ -6,11 +6,12 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:37:24 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/13 16:01:30 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:25:10 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <sys/time.h>
 
 static int	dongle_ready(t_dongle *dongle, t_coder *coder)
 {
