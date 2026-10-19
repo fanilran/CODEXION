@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:10 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/19 12:25:37 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 16:39:14 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	heapify(t_dongle *dongles, char *scheduler)
 {
 	if (strcmp(scheduler, "fifo") == 0)
 	{
-		if (dongles->heap[0].create_at > dongles->heap[1].create_at)
+		if (dongles->heap[0].create_at < dongles->heap[1].create_at)
 			swap_request(&dongles->heap[0], &dongles->heap[1]);
 	}
 	else if (strcmp(scheduler, "edf") == 0)

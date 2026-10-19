@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:04 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/19 12:25:32 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 16:39:14 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	ft_is_digit(char *str)
 	nb = 0;
 	if (str[i] == '+')
 		i++;
+	if (!str[i])
+		return (0);
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')

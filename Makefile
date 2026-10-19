@@ -1,16 +1,15 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -lpthread
-SRC =   Coders/main.c \
-        Coders/parsing.c \
-        Coders/init.c \
-        Coders/dongles.c \
-        Coders/action.c \
-        Coders/time.c \
-        Coders/simulation.c \
-        Coders/thread.c \
-        Coders/useful.c \
-        Coders/scheduler.c
+CFLAGS = -Wall -Wextra -Werror -pthread
+SRC =   coders/main.c \
+        coders/parsing.c \
+        coders/init.c \
+        coders/dongles.c \
+        coders/action.c \
+        coders/time.c \
+        coders/simulation.c \
+        coders/thread.c \
+        coders/useful.c \
+        coders/scheduler.c
 OBJ = $(SRC:.c=.o)
 NAME = ./codexion
 
@@ -23,7 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "  $(GREEN)Executable file:$(RESET) %s\n" $@
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c
 	@printf "  $(BLUE)CC$(RESET) %s\n" $<

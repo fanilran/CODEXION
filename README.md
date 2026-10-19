@@ -70,7 +70,7 @@ All arguments are mandatory. Invalid input (wrong argument count, negative numbe
 # 5 coders, EDF scheduling
 ./codexion 5 800 200 200 200 7 50 edf
 
-# 4 coders, FIFO scheduling
+# 4 coders, fifo scheduling
 ./codexion 4 1000 200 100 100 5 20 fifo
 
 # A single coder: will burn out (only one dongle exists)
@@ -113,7 +113,7 @@ Valid events: `has taken a dongle`, `is compiling`, `is debugging`, `is refactor
 AI tools were used for:
 
 - *Brainstorming test scenarios* (e.g. edge cases such as a single coder, zero cooldown, tight burnout deadlines) — results were run and reviewed with peers.
-- *Explaining* the Coffman conditions and the difference between FIFO and EDF arbitration.
+- *Explaining* the Coffman conditions and the difference between fifo and EDF arbitration.
 - *Drafting and proofreading this README.*
 
 All code was written, tested and is fully understood by the author(s); AI output was systematically checked and reviewed with peers before being used.
@@ -131,7 +131,7 @@ A deadlock requires all four Coffman conditions to hold simultaneously. The solu
 
 ### Starvation prevention
 
-- **FIFO**: each dongle serves requests strictly in arrival order, so no request can be overtaken indefinitely.
+- **fifo**: each dongle serves requests strictly in arrival order, so no request can be overtaken indefinitely.
 - **EDF**: each dongle serves the waiting coder with the earliest deadline (`last_compile_start + time_to_burnout`). A coder that has waited longest since its last compile has the earliest deadline and therefore rises to the top of the queue, which guarantees liveness for feasible parameters.
 - Ties are broken deterministically (arrival order, then coder id) so that the heap ordering is stable.
 

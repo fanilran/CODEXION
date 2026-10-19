@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:20 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/19 12:58:00 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 15:54:55 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	*routine(void *arg)
 
 	coder = (t_coder *)arg;
 	i = 0;
-	if (coder->id % 2 == 0)
-		usleep(coder->config->time_to_compile * 500);
 	while (i < coder->config->compiles_required && !is_stopped(coder))
 	{
 		if (!take_dongle(coder))
