@@ -6,13 +6,12 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:41 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/19 12:25:47 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/19 12:27:37 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 #include <sys/time.h>
-
 
 long	get_current_ms(void)
 {
