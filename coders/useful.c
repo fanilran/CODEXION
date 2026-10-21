@@ -6,7 +6,7 @@
 /*   By: fanilran <fanilran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 14:38:48 by fanilran          #+#    #+#             */
-/*   Updated: 2026/10/19 12:25:51 by fanilran         ###   ########.fr       */
+/*   Updated: 2026/10/21 13:52:35 by fanilran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	check_all_done(t_coder *coders)
 			return (0);
 		i++;
 	}
+	pthread_mutex_lock(&coders->config->stop_mutex);
 	coders->config->stop = 1;
+	pthread_mutex_unlock(&coders->config->stop_mutex);
 	return (1);
 }
